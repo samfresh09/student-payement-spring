@@ -5,8 +5,11 @@ import com.samfresh09.studentmanagebackend.enums.PaymentStatus;
 import com.samfresh09.studentmanagebackend.enums.PaymentType;
 import com.samfresh09.studentmanagebackend.services.interfaces.PaymentService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,9 +19,9 @@ import java.util.UUID;
 public class PaymentController {
     private PaymentService paymentService;
 
-    @PostMapping("/")
-    public Payment savePayment(@RequestBody Payment payment) {
-        return  this.paymentService.savePayment(payment);
+    @PostMapping(path = "/",consumes = MediaType.MULTIPART_FORM_DATA_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    public Payment savePayment(@RequestParam MultipartFile file, double amount,PaymentType type,String code) throws IOException {
+        return  this.paymentService.savePayment(file,amount,type,code);
     }
 
     @GetMapping("/")
