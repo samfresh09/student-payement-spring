@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PaymentDao extends JpaRepository<Payment, UUID> {
-    Payment findByStudentCode(String code);
+    List<Payment> findByStudentCode(String code);
     List<Payment> findByType(PaymentType type);
     List<Payment> findByStatus(PaymentStatus status);
 }
