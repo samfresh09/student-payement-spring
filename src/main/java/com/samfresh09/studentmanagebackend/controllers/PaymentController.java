@@ -17,7 +17,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/")
-    public Payment savePayment(Payment payment) {
+    public Payment savePayment(@RequestBody Payment payment) {
         return  this.paymentService.savePayment(payment);
     }
 
@@ -42,7 +42,7 @@ public class PaymentController {
     }
 
     @GetMapping("/student/{code}")
-    public List<Payment> getPaymentWithStudent(String code) {
+    public List<Payment> getPaymentWithStudent(@PathVariable String code) {
         return this.paymentService.getPaymentWithStudent(code);
     }
 
